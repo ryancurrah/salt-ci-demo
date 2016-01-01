@@ -31,7 +31,7 @@ def output(data):
     from pprint import pprint
     pprint(data)
     root = xml.Element('testsuite')
-    root.attrib['name'] = 'state.highstate'
+    root.attrib['name'] = 'state_results'
     for host, hostdata in data.iteritems():
         if not isinstance(hostdata, dict):
                 log.debug('data is not iterable {0}'.format(hostdata))
