@@ -1,4 +1,4 @@
-{% from 'ntp/settings.jinja' import ntp with context %}
+{% from 'agents/ntp/settings.jinja' import ntp with context %}
 
 ntp_client:
   pkg.installed:
@@ -21,3 +21,4 @@ ntp_client:
     - name: service {{ ntp.service }} stop; {{ ntp.bin }} -gq
     - watch_in:
       - service: ntp_client
+
