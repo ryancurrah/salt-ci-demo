@@ -1,0 +1,27 @@
+{% set ntp = {} %}
+
+{% set ntp = salt['grains.filter_by']({
+    'Debian': {
+        'pkg': 'ntp',
+        'service': 'ntp',
+        'bin': 'ntpd',
+        'conf': '/etc/ntp.conf'
+    },
+    'RedHat': {
+        'pkg': 'ntp',
+        'service': 'ntp',
+        'bin': 'ntpd',
+        'conf': '/etc/ntp.conf'
+    }
+}, merge=salt['pillar.get']('ntp:lookup')) %}
+
+{% set servers = salt['pillar.get']('ntp:servers', 
+                                    ['0.north-america.pool.ntp.org', 
+                                     '1.north-america.pool.ntp.org',
+                                     '2.north-america.pool.ntp.org',
+                                     '3.north-america.pool.ntp.org'])
+%}
+
+{% do ntp.update({
+    'servers': servers, 
+}) %}
