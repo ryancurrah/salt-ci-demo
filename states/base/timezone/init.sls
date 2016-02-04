@@ -1,4 +1,4 @@
-{% from "base/timezone/settings.jinja" import timezone with context %}
+{% from "timezone/settings.jinja" import timezone with context %}
 
 set_timezone:
   timezone.system:

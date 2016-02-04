@@ -1,4 +1,4 @@
-{% from 'agents/ntp/settings.jinja' import ntp with context %}
+{% from 'ntp/settings.jinja' import ntp with context %}
 
 ntp_client:
   pkg.installed:

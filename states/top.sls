@@ -8,9 +8,9 @@ base:
   {% for role in salt['grains.get']('roles', []) %}
   'roles:{{ role }}':
     - match: grain
-    - roles.{{ role }}
+    - {{ role }}
   {% endfor %}
 
   'app:{{ salt['grains.get']('app', '') }}':
     - match: grain
-    - apps.{{ salt['grains.get']('app', '') }}
+    - {{ salt['grains.get']('app', '') }}
