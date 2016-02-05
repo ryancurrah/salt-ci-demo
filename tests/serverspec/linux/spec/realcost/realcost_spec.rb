@@ -15,7 +15,7 @@ if property.has_key? 'app' and property['app'].include? 'realcost' then
       it { should be_listening }
     end
 
-    describe file('/etc/apache2/sites-enabled/090-realcost.conf') do
+    describe file('/etc/apache2/sites-enabled/001-realcost.conf') do
       it { should be_file }
       it { should be_mode 640 }
       it { should be_owned_by 'www-data' }

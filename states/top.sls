@@ -4,6 +4,7 @@ base:
     - timezone
     - hosts
     - ntp
+    - pip
 
   {% for role in salt['grains.get']('roles', []) %}
   'roles:{{ role }}':
