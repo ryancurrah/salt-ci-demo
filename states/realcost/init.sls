@@ -5,35 +5,39 @@ realcost_app_dir:
   file.directory:
     - name: /var/www/realcost
     - makedirs: true
+    - mode: 750 
     - user: www-data
     - recurse:
       - user
 
-realcost_git:
+realcost_app_latest:
   git.latest:
     - name: https://github.com/ryancurrah/realcost
     - target: /var/www/realcost
     - force_clone: true
     - require:
       - file: realcost_app_dir
+    - watch_in:
+      - service: apache_service
 
-realcost_venv_dir:
+realcost_venvs_dir:
   file.directory:
-    - name: /var/virtualenvs/realcost
+    - name: /var/venvs/realcost
     - makedirs: true
+    - mode: 750 
     - user: www-data
     - recurse:
       - user
 
-realcost_virtualenv:
+realcost_venv:
   virtualenv.managed:
-    - name: /var/virtualenvs/realcost
+    - name: /var/venvs/realcost
     - requirements: /var/www/realcost/requirements.txt 
-    - system_site_packages: False
+    - system_site_packages: false
     - user: www-data
     - require:
-      - file: realcost_app_dir
-      - git: realcost_git
-      - file: realcost_venv_dir
-    - require_in:
-      - file: apache_sites_enabled_conf 
+      - git: realcost_app_latest
+      - file: realcost_venvs_dir
+    - watch_in:
+      - service: apache_service
+

@@ -1,9 +1,9 @@
 base:
   'kernel:Linux':
     - match: grain
-    - base.timezone
-    - base.hosts
-    - agents.ntp
+    - timezone
+    - hosts
+    - ntp
 
   {% for role in salt['grains.get']('roles', []) %}
   'roles:{{ role }}':

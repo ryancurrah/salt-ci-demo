@@ -15,5 +15,7 @@ apache_sites_enabled_conf:
   file.managed:
     - source: salt://realcost/files/090-realcost.conf
     - name: /etc/apache2/sites-enabled/090-realcost.conf
+    - mode: 640
+    - user: www-data
     - watch_in:
       - service: apache_service
