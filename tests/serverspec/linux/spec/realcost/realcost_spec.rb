@@ -15,6 +15,10 @@ if property.has_key? 'app' and property['app'].include? 'realcost' then
       it { should be_listening }
     end
 
+    describe file('/etc/apache2/sites-enabled/000-default.conf') do
+      it { should_not exist }
+    end
+
     describe file('/etc/apache2/sites-enabled/001-realcost.conf') do
       it { should be_file }
       it { should be_mode 640 }
