@@ -24,8 +24,8 @@ if property.has_key? 'app' and property['app'].include? 'realcost' then
 
     describe file('/var/www/realcost') do
       it { should be_directory }
-      it { should be_mode 750 }
-      it { should be_owned_by 'www-data' }
+      it { should be_mode 755 }
+      it { should be_owned_by 'root' }
     end
 
     describe file('/var/venvs/realcost') do
